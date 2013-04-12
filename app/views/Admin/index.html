@@ -1,0 +1,13 @@
+#{extends 'admin.html' /}
+<h3>Welcome ${user}, <span>you have created ${projects.size() ?: 'no'} 
+${projects.pluralize('project', 'projects')} so far</span></h3>
+ 
+#{list items:projects, as:'project'}
+    <p class="post ${project_parity}">
+        <a href="@{form(project.id)}">${project.title}</a>
+    </p>
+#{/list}
+ 
+<p id="newPost" >
+    <a href="@{form()}"><span>+</span> Add a project</a>
+</p>

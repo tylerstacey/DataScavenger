@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>#{get 'title' /}</title>
+        <meta charset="${_response_encoding}">
+        <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        <!--BS-->
+        #{get 'moreStyles' /}
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/bootstrap.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/jquery.tools.min.js'}"></script>
+        #{get 'moreScripts' /}
+    </head>
+        <body id="admin">
+        
+        <div id="header">
+            <div id="logo">
+                <span>Administration</span>
+            </div>
+            <ul id="tools">
+                <li>
+                    <a href="@{Secure.logout()}">Log out</a>
+                </li>
+                <li>
+                    <a href="@{Application.index()}">Main Page</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div id="main">
+    
+    <ul id="adminMenu">
+        <li class="${request.controller == 'Admin' ? 'selected' : ''}">
+            <a href="@{Admin.index()}">My projects</a>
+        </li>
+        #{secure.check 'admin'}
+            <li class="${request.controller == 'Projects' ? 'selected' : ''}">
+                <a href="@{Projects.list()}">Projects</a>
+            </li>
+            <li class="${request.controller == 'TempRecs' ? 'selected' : ''}">
+                <a href="@{TempRecs.list()}">Temperature Records</a>
+            </li>
+            <li class="${request.controller == 'Users' ? 'selected' : ''}">
+                <a href="@{Users.list()}">Users</a>
+            </li>
+        #{/secure.check}
+        
+    </ul>
+
+            #{doLayout /} 
+        </div>
+        
+    </body>
+</html>

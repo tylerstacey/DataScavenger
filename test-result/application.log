@@ -1,0 +1,5 @@
+29 Mar 2013 17:03:55,507 INFO  ~ Starting /home/tyler/Project/DataScavenger
+29 Mar 2013 17:03:56,263 WARN  ~ You're running Play! in DEV mode
+29 Mar 2013 17:03:56,356 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+29 Mar 2013 17:04:25,294 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+29 Mar 2013 17:04:26,131 INFO  ~ Application 'DataScavenger' is now started !

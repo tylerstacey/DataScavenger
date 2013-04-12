@@ -1,0 +1,58 @@
+*{ Display a post in one of these modes: 'full', 'home' or 'teaser' }*
+ 
+<div class="">
+    <h2 class="">
+        <a href="@{Application.show(_project.id)}">${_project.title}</a>
+    </h2>
+    <div class="">
+        <span class="">by ${_project.author.fullname}</span>,
+        <span class="">${_project.postedAt.format('dd MMM yy')}</span>
+        #{if _as != 'full'}
+            <span class="">
+                &nbsp;|&nbsp; ${_project.recs.size() ?: 'no'} 
+                Temperature Record${_project.recs.size().pluralize()}
+                #{if _project.recs}
+                    , latest by ${_project.recs[-1].author}
+                #{/if}
+            </span>
+        #{/if}
+    </div>
+    #{if _as != 'teaser'}
+        <div class="">
+            <div class="">Detail: </div>
+            ${_project.content.nl2br()}
+        </div>
+    #{/if}
+</div>
+ 
+#{if _as == 'full'}
+    <div class="">
+        <h3>
+            ${_project.recs.size() ?: 'No'} 
+            Temperature Record${_project.recs.size().pluralize()}
+        </h3>
+        <script type="text/javascript">
+        	$(document).ready(function(){ 
+        		$("#myTable").tablesorter(); 
+    		});
+        </script>
+        <table id="myTable" class="tablesorter">
+        <thead>
+        <tr> 
+        <th>Date</th>
+        <th>Temperature &deg;C</th>
+        <th >Contributer</th>
+        </tr>
+        </thead>
+        <tbody>
+        #{list items:_project.recs, as:'rec'}
+        <tr>
+        <td>${rec.postedAt.format('dd MMM yy HH:MM')}</td>
+        <td>${rec.content.escape().nl2br()}</td>
+        <td>${rec.author}</td>
+        </tr>
+        #{/list}
+        </tbody>
+        </table>
+    </div>
+#{/if}

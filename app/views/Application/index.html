@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Register|Login' /}
+
+#{if frontProject}
+    
+    #{display project:frontProject, as:'home' /}
+    
+    #{if olderProjects.size()}
+    
+        <div class="">
+            <h3>Older Projects</h3>
+        
+            #{list items:olderProjects, as:'oldProject'}
+                #{display project:oldProject, as:'teaser' /}
+            #{/list}
+        </div>
+        
+    #{/if}
+    
+#{/if}
+ 
+#{else}
+    <div class="">
+        There is currently nothing to read here.
+    </div>
+#{/else}

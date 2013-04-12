@@ -1,0 +1,32 @@
+# Test data
+
+User(rod):
+    email:          rod@mun.ca
+    password:       rod
+    fullname:       Rod Byrne
+    isAdmin:        true
+    
+User(jeff):
+    email:          jeff@gmail.com
+    password:       secret
+    fullname:       Jeff    
+    
+User(paul):
+    email:          paul@gmail.com
+    password:       secret
+    fullname:       Paul    
+   
+Project(firstRodProject):
+    title:          About the application.
+    postedAt:       2013-03-28
+    author:         rod
+    content:        >
+                    The application models temperature recordings.
+                    
+TempRec(rec1):
+    author:         Guest
+    content:        >
+                    23.0
+    postedAt:       2013-03-28
+    project:           firstRodProject
+  

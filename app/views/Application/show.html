@@ -1,0 +1,62 @@
+#{extends 'main.html' /}
+#{set title:project.title /}
+ <ul id="pagination">
+    #{if project.previous()}
+        <li id="previous">
+            <a href="@{Application.show(project.previous().id)}">
+                ${project.previous().title}
+            </a>
+        </li>
+    #{/if}
+    #{if project.next()}
+        <li id="next">
+            <a href="@{Application.show(project.next().id)}">
+                ${project.next().title}
+            </a>
+        </li>
+    #{/if}
+</ul>
+#{if flash.success}
+    <p class="success">${flash.success}</p>
+#{/if}
+#{display project:project, as:'full' /}
+<h3>Add a Temperature Record</h3>
+ 
+#{form @Application.postTempRec(project.id)}
+	#{ifErrors}
+        <p class="error">
+            All fields are required!
+        </p>
+    #{/ifErrors}
+    <p>
+    	<div class="input-prepend">
+        <label for="author">Your name: </label>
+        <span class="add-on">@</span>
+        <input readonly class="span3" type="text" name="author" id="author" value="${user}" />
+        </div>
+    </p>
+    <p>
+        <label for="content">Your record: </label>
+        <div class="input-append">
+        <input class="span2" type="number" name="content" id="content" />
+        <span class="add-on">&deg;C</span>
+        </div>
+    </p>
+    <p>
+        <input class="btn btn-success" type="submit" value="Submit Record" />
+    </p>
+    <script type="text/javascript" charset="utf-8">
+    $(function() {         
+        // Expose the form 
+        $('form').click(function() { 
+            $('form').expose({api: true}).load(); 
+        }); 
+        
+        // If there is an error, focus to form
+        if($('form .error').size()) {
+            $('form').expose({api: true, loadSpeed: 0}).load(); 
+            $('form input[type=text]').get(0).focus();
+        }
+    });
+</script>
+#{/form}

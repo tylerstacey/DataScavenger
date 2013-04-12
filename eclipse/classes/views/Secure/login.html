@@ -1,0 +1,63 @@
+#{extends 'Secure/layout.html' /}
+
+<div id="login">
+	
+	<h1>&{'secure.title'}</h1>
+	<h1>Data Scavenger</h1>
+		
+	#{form @authenticate()}
+		
+		#{if flash.error}
+			<p class="error">
+				&{flash.error}
+			</p>
+		#{/if}
+		#{if flash.success}
+			<p class="success">
+				&{flash.success}
+			</p>
+		#{/if}
+	
+		<p id="username-field">
+			<label for="username">&{'secure.username'}</label>
+			<input type="text" name="username" id="username" value="${flash.username}" />
+		</p>
+		<p id="password-field">
+			<label for="password">&{'secure.password'}</label>
+			<input type="password" name="password" id="password" value="" />
+		</p>
+		<p id="remember-field">
+			<input type="checkbox" name="remember" id="remember" value="true" ${flash.remember ? 'checked="true"' : ''} />
+			<label for="remember">&{'secure.remember'}</label>
+		</p>
+		<p id="signin-field">
+			<input type="submit" id="signin" value="&{'secure.signin'}" />
+		</p>
+	#{/form}
+	<h2>What is Data Scavenger?</h2>
+			<ul>
+				<li>
+					Data Scavenger is a web application that allows users to collaborate and share data.
+				</li>
+			</ul>
+			<h2>Main Features</h2>
+			<ul>
+				<li>
+					Manage data for multiple projects.
+				</li>
+				<li>
+					Help others collect data for their projects.
+				</li>
+				<li>
+					Generate tables for your projects and view reports published by other's.
+				</li>
+				<li>
+					Users can create projects and add data to projects.
+				</li>
+				<li>
+					The administrator can delete users, projects, and data.
+				</li>
+			</ul>
+			<h3>*Ask your administrator for permission to gain access</h3>
+	
+</div>
